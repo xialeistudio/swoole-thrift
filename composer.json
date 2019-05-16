@@ -1,0 +1,24 @@
+{
+  "name": "xialeistudio/swoole-thrift",
+  "description": "thrift framework on swoole server",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "xialeistudio",
+      "email": "xialeistudio@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "apache/thrift": "^0.12.0"
+  },
+  "require-dev": {
+    "eaglewu/swoole-ide-helper": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "SwooleThrift\\": "src/"
+    }
+  }
+}
