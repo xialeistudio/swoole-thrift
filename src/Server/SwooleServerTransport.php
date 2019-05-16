@@ -18,22 +18,6 @@ use Thrift\Transport\TTransport;
 class SwooleServerTransport extends TServerTransport
 {
     /**
-     * @var string 监听地址
-     */
-    public $host = 'localhost';
-    /**
-     * @var int 监听端口
-     */
-    public $port = 9501;
-    /**
-     * @var int 进程模型
-     */
-    public $mode = SWOOLE_PROCESS;
-    /**
-     * @var int SOCK类型
-     */
-    public $sockType = SWOOLE_SOCK_TCP;
-    /**
      * @var array 服务器选项
      */
     public $options = [
@@ -53,13 +37,17 @@ class SwooleServerTransport extends TServerTransport
 
     /**
      * SwooleServerTransport constructor.
-     * @param array $config
+     * @param $host
+     * @param int $port
+     * @param int $mode
+     * @param int $sockType
+     * @param array $options
      */
-    public function __construct(array $config = [])
+    public function __construct($host, $port = 9501, $mode = SWOOLE_PROCESS, $sockType = SWOOLE_SOCK_TCP, $options = [])
     {
-        $config = $this->mergeConfig($config);
-        $this->server = new Server($config['host'], $config['port'], $config['mode'], $config['sockType']);
-        $this->server->set($config['options']);
+        $this->server = new Server($host, $port, $mode, $sockType);
+        $options = array_merge($this->options, $options);
+        $this->server->set($options);
     }
 
 
@@ -93,21 +81,5 @@ class SwooleServerTransport extends TServerTransport
     protected function acceptImpl()
     {
         return null;
-    }
-
-    /**
-     * 合并配置
-     * @param array $config
-     * @return array
-     */
-    private function mergeConfig(array $config)
-    {
-        return array_merge([
-            'host' => $this->host,
-            'port' => $this->port,
-            'mode' => $this->mode,
-            'sockType' => $this->sockType,
-            'options' => $this->options
-        ], $config);
     }
 }
