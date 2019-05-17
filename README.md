@@ -1,8 +1,13 @@
-# swoole-thrift
+# swoole-thrift[Deprecated]
 基于基于swoole协程的thrift服务端。
-
 基于thrift标准接口编程，使用方法与原生thrift一致。
 
+## 项目迁移
+
+为了更好的管理swoole相关项目，迁移到了一个统一的组织。
+[https://github.com/swoole-foundation/swoole-thrift](https://github.com/swoole-foundation/swoole-thrift)
+
+基于基于swoole协程的thrift服务端。
 ## version
 
 + swoole 4.x
